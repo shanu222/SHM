@@ -1,6 +1,7 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
+import { MapContainer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import { useNavigate } from 'react-router';
+import { BasemapLayers } from './BasemapLayers';
 import type { Asset } from '../data/mockData';
 import { divIcon, latLngBounds } from 'leaflet';
 import { Expand, Minimize2, Crosshair } from 'lucide-react';
@@ -75,10 +76,7 @@ export function PakistanAssetMap({ assets, height = 420 }: PakistanAssetMapProps
         scrollWheelZoom
       >
         <FitToAssets assets={assets} />
-        <TileLayer
-          attribution='&copy; OpenStreetMap contributors &copy; CARTO'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        />
+        <BasemapLayers defaultBasemap="esri-streets" />
         {assets.map((asset) => {
           const config = riskConfig[asset.riskLevel];
           return (
