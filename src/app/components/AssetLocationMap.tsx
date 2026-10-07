@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup } from 'react-leaflet';
+import { BasemapLayers } from './BasemapLayers';
 import type { Asset } from '../data/mockData';
 import { divIcon } from 'leaflet';
 import { Expand, Minimize2 } from 'lucide-react';
@@ -41,10 +42,7 @@ export function AssetLocationMap({ asset }: AssetLocationMapProps) {
         style={{ height: isFullscreen ? 'calc(100vh - 32px)' : '230px', width: '100%' }}
         scrollWheelZoom
       >
-        <TileLayer
-          attribution='&copy; OpenStreetMap contributors &copy; CARTO'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        />
+        <BasemapLayers defaultBasemap="esri-hybrid" />
         <Marker position={[asset.location.lat, asset.location.lng]} icon={icon}>
           <Popup>
             <div className="space-y-1">
